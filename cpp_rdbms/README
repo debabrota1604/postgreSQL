@@ -1,0 +1,3 @@
+First setup postgresSQL by reading the 01_postgresSetup.txt. Make sure to note the db_name, username, password to enter it into cpp file. Default is (debdb, deb, ubuntu).
+Compile the CPP file by executing compile.sh. Give execute permission to the executable. Use 02_cppPreparation.txt for help.
+Run the executable pg_connector as a normal cpp executable and see the outputs.

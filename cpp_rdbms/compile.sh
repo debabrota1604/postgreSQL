@@ -1,0 +1,1 @@
+g++ pg_connector.cpp -o pg_connector -I/opt/homebrew/opt/libpq/include -L/opt/homebrew/opt/libpq/lib -lpq

@@ -1,0 +1,7 @@
+compile using this command:
+
+g++ pg_connector.cpp -o pg_connector -I/opt/homebrew/opt/libpq/include -L/opt/homebrew/opt/libpq/lib -lpq
+
+Make sure libpq package installed, else install using brew.
+To know where brew installed libpq:
+	brew --prefix libpq

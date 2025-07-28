@@ -1,0 +1,87 @@
+This file mentions how to setup a postgresSQL DB on ARM based Mac (done in M2 Pro).
+
+Installation:
+	brew install postgresql 
+	
+Start service:
+	brew services start postgresql@14
+	
+Stop service:
+	brew services stop postgresql 
+
+Verify service running:
+    brew services list
+
+Start prompt:
+	psql -d postgres
+	
+
+All PSQL commands must be ended with semicolon to be executed.
+
+
+
+PostgreSQL commands:--------------------------
+    Creating DB: CREATE DATABASE debdb;
+
+    Connecting to DB: \c db_name;
+
+    Quit: /q
+
+
+Some example logs:--------------------------------
+
+        postgres=# CREATE DATABASE debdb;
+        CREATE DATABASE
+        postgres=# \c debdb;
+        You are now connected to database "debdb" as user "deb".
+        debdb=# CREATE TABLE products (
+            id SERIAL PRIMARY KEY,
+            name VARCHAR(100) NOT NULL,
+            price DECIMAL(10, 2)
+        );
+        CREATE TABLE
+        debdb=# INSERT INTO products (name, price) VALUES ('Laptop', 1200.00);
+        INSERT INTO products (name, price) VALUES ('Mouse', 25.50);
+        INSERT 0 1
+        INSERT 0 1
+        debdb=# SELECT * FROM products;
+        id |  name  |  price  
+        ----+--------+---------
+        1 | Laptop | 1200.00
+        2 | Mouse  |   25.50
+        (2 rows)
+
+        debdb=# INSERT INTO products (name, price) VALUES ('UPS', 200.00);
+        INSERT INTO products (name, price) VALUES ('Keyboard', 35.50);
+        INSERT 0 1
+        INSERT 0 1
+        debdb=# SELECT * FROM products;
+        id |   name   |  price  
+        ----+----------+---------
+        1 | Laptop   | 1200.00
+        2 | Mouse    |   25.50
+        3 | UPS      |  200.00
+        4 | Keyboard |   35.50
+        (4 rows)
+
+        debdb=# UPDATE products SET price = 1250.00 WHERE name = 'Laptop';
+        UPDATE 1
+        debdb=# SELECT * FROM products;
+        id |   name   |  price  
+        ----+----------+---------
+        2 | Mouse    |   25.50
+        3 | UPS      |  200.00
+        4 | Keyboard |   35.50
+        1 | Laptop   | 1250.00
+        (4 rows)
+
+        debdb=# DELETE FROM products WHERE name = 'Mouse';
+        DELETE 1
+        debdb=# SELECT * FROM products;
+        id |   name   |  price  
+        ----+----------+---------
+        3 | UPS      |  200.00
+        4 | Keyboard |   35.50
+        1 | Laptop   | 1250.00
+        (3 rows)
+
